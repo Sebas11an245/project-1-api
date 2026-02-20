@@ -1,0 +1,27 @@
+{
+  "name": "project-1-api",
+  "version": "1.0.0",
+  "description": "Pokemon Api Project",
+  "homepage": "https://github.com/Sebas11an245/project-1-api#readme",
+  "bugs": {
+    "url": "https://github.com/Sebas11an245/project-1-api/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sebas11an245/project-1-api.git"
+  },
+  "license": "ISC",
+  "author": "Sebastian Arroyo",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start" : "node ./src/server.js",
+    "pretest" : "eslint ./src --fix",
+    "test": "echo \"Tests Complete\""
+  },
+  "devDependencies": {
+    "eslint": "^8.57.1",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.32.0"
+  }
+}
