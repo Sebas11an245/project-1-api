@@ -1,11 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="UTF-8" />
+    <title>Pokédex API Test Application</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-    
+
+    <nav>
+        <a href="/">Test the Application Here</a> |
+        <a href="/docs.html">View the Documentation Here</a>
+    </nav>
+
+    <h1>Pokédex API Test Application</h1>
+
+    <section>
+        <h2>/api/pokemon</h2>
+        <button id="getAllBtn">GET</button>
+        <button id="headAllBtn">HEAD</button>
+    </section>
+
+    <section>
+        <h2>/api/pokemon/:id</h2>
+        <input type="number" id="pokemonIdInput" placeholder="Enter Pokémon ID" />
+        <button id="getByIdBtn">GET</button>
+    </section>
+
+    <section>
+        <h2>/api/pokemon?type=</h2>
+        <input type="text" id="typeInput" placeholder="Enter type (fire, water, etc)" />
+        <button id="getByTypeBtn">GET</button>
+    </section>
+
+    <section>
+        <h2>POST /api/pokemon (Add Pokémon)</h2>
+        <form id="addPokemonForm">
+            <input type="text" id="nameInput" placeholder="Name" required />
+            <input type="text" id="typeAddInput" placeholder="Type" required />
+            <input type="number" id="generationInput" placeholder="Generation" required />
+            <input type="number" id="attackInput" placeholder="Attack" required />
+            <input type="number" id="defenseInput" placeholder="Defense" required />
+            <input type="number" id="speedInput" placeholder="Speed" required />
+            <button type="submit">POST</button>
+        </form>
+    </section>
+
+    <section>
+        <h2>POST /api/pokemon/:id (Update Pokémon)</h2>
+
+        <form id="updatePokemonForm">
+            <input type="number" id="updateIdInput" placeholder="Pokémon ID" required />
+
+            <input type="text" id="updateNameInput" placeholder="New Name (optional)" />
+            <input type="text" id="updateTypeInput" placeholder="New Type (optional)" />
+            <input type="number" id="updateGenerationInput" placeholder="New Generation (optional)" />
+
+            <input type="number" id="updateAttackInput" placeholder="New Attack (optional)" />
+            <input type="number" id="updateDefenseInput" placeholder="New Defense (optional)" />
+            <input type="number" id="updateSpeedInput" placeholder="New Speed (optional)" />
+
+            <button type="submit">POST (Update)</button>
+        </form>
+    </section>
+
+    <h2>Response:</h2>
+    <pre id="responseBox"></pre>
+
+    <script src="client.js"></script>
 </body>
+
 </html>

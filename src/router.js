@@ -1,11 +1,29 @@
 const url = require('url');
 const getHandlers = require('./handlers/getHandlers');
 const postHandlers = require('./handlers/postHandlers');
+const { serveFile } = require('./handlers/fileHandler');
+
 
 const handleRequest = (req, res, data) => {
-  const parsedUrl = url.parse(req.url, true);
+  const parsedUrl = url.parse(req.url);
   const path = parsedUrl.pathname;
   const method = req.method;
+
+  if (path === '/' || path === '/index.html') {
+    return serveFile(res, 'client/index.html', 'text/html');
+  }
+
+  if (path === '/client.js') {
+    return serveFile(res, 'client/client.js', 'text/javascript');
+  }
+
+  if (path === '/style.css') {
+    return serveFile(res, 'client/style.css', 'text/css');
+  }
+
+  if (path === '/docs.html') {
+    return serveFile(res, 'client/docs.html', 'text/html');
+  }
 
   if (path === '/api/pokemon' && (method === 'GET' || method === 'HEAD')) {
     return getHandlers.getAllPokemon(req, res, data);
