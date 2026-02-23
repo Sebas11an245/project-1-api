@@ -21,7 +21,8 @@ const getAllPokemon = (req, res, data) => {
 
   if (type) {
     results = results.filter(p =>
-      p.type.map(t => t.toLowerCase()).includes(type.toLowerCase())
+      p.type.map(t => 
+        t.toLowerCase()).includes(type.toLowerCase())
     );
   }
 
@@ -71,7 +72,8 @@ const getPokemonById = (req, res, data, id) => {
 
 const getPokemonByType = (req, res, data, type) => {
   const results = data.filter(p =>
-    p.type.map(t => t.toLowerCase()).includes(type.toLowerCase())
+    p.type.map(t => 
+      t.toLowerCase()).includes(type.toLowerCase())
   );
 
   if (!results.length) {
