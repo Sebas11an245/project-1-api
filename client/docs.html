@@ -1,11 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="UTF-8" />
+    <title>Pokédex API Documentation</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-    
+
+    <nav>
+        <a href="/">Test the Application</a> |
+        <a href="/docs.html">API Documentation</a>
+    </nav>
+
+    <h1>Pokédex API Documentation</h1>
+
+    <p>
+        This API provides access to Pokémon data stored in a local JSON dataset.
+        All endpoints return JSON by default and support the appropriate HTTP methods.
+    </p>
+
+    <hr />
+
+    <!-- GET ALL POKEMON -->
+    <section>
+        <h2>GET /api/pokemon</h2>
+        <p><strong>Supported Methods:</strong> GET, HEAD</p>
+
+        <h3>Query Parameters (optional)</h3>
+        <ul>
+            <li><strong>type</strong> (string) – filter Pokémon by type</li>
+            <li><strong>generation</strong> (number) – filter by generation</li>
+            <li><strong>limit</strong> (number) – limit number of results</li>
+            <li><strong>name</strong> (string) – partial name search</li>
+        </ul>
+
+        <h3>Returns</h3>
+        <p>JSON object containing count and list of Pokémon.</p>
+
+        <h3>Example</h3>
+        <pre>
+GET /api/pokemon?type=fire&limit=5
+    </pre>
+    </section>
+
+    <hr />
+
+    <!-- GET BY ID -->
+    <section>
+        <h2>GET /api/pokemon/:id</h2>
+        <p><strong>Supported Methods:</strong> GET, HEAD</p>
+
+        <h3>URL Parameters</h3>
+        <ul>
+            <li><strong>id</strong> (number, required) – Pokémon ID</li>
+        </ul>
+
+        <h3>Returns</h3>
+        <p>Single Pokémon object in JSON format.</p>
+
+        <h3>Example</h3>
+        <pre>
+GET /api/pokemon/25
+    </pre>
+    </section>
+
+    <hr />
+
+    <!-- GET BY TYPE -->
+    <section>
+        <h2>GET /api/pokemon/type/:type</h2>
+        <p><strong>Supported Methods:</strong> GET, HEAD</p>
+
+        <h3>URL Parameters</h3>
+        <ul>
+            <li><strong>type</strong> (string, required) – Pokémon type</li>
+        </ul>
+
+        <h3>Returns</h3>
+        <p>Array of Pokémon that match the given type.</p>
+
+        <h3>Example</h3>
+        <pre>
+GET /api/pokemon/type/water
+    </pre>
+    </section>
+
+    <hr />
+
+    <!-- GET STATS -->
+    <section>
+        <h2>GET /api/stats</h2>
+        <p><strong>Supported Methods:</strong> GET, HEAD</p>
+
+        <h3>Query Parameters (optional)</h3>
+        <ul>
+            <li><strong>minAttack</strong> (number)</li>
+            <li><strong>minDefense</strong> (number)</li>
+            <li><strong>minSpeed</strong> (number)</li>
+        </ul>
+
+        <h3>Returns</h3>
+        <p>List of Pokémon that match the stat filters.</p>
+
+        <h3>Example</h3>
+        <pre>
+GET /api/stats?minAttack=100
+    </pre>
+    </section>
+
+    <hr />
+
+    <!-- POST ADD -->
+    <section>
+        <h2>POST /api/pokemon</h2>
+        <p><strong>Supported Methods:</strong> POST</p>
+
+        <h3>Body Parameters</h3>
+        <ul>
+            <li><strong>name</strong> (string, required)</li>
+            <li><strong>type</strong> (array or string, required)</li>
+            <li><strong>generation</strong> (number, required)</li>
+            <li><strong>stats</strong> (object, required)</li>
+        </ul>
+
+        <h3>Returns</h3>
+        <p>The newly created Pokémon object.</p>
+
+        <h3>Example</h3>
+        <pre>
+POST /api/pokemon
+{
+  "name": "Testmon",
+  "type": ["Fire"],
+  "generation": 1,
+  "stats": { "attack": 50, "defense": 40, "speed": 60 }
+}
+    </pre>
+    </section>
+
+    <hr />
+
+    <!-- POST UPDATE -->
+    <section>
+        <h2>POST /api/pokemon/:id</h2>
+        <p><strong>Supported Methods:</strong> POST</p>
+
+        <h3>URL Parameters</h3>
+        <ul>
+            <li><strong>id</strong> (number, required)</li>
+        </ul>
+
+        <h3>Body Parameters (optional)</h3>
+        <ul>
+            <li>name (string)</li>
+            <li>type (array or string)</li>
+            <li>generation (number)</li>
+            <li>stats (object)</li>
+        </ul>
+
+        <h3>Returns</h3>
+        <p>The updated Pokémon object.</p>
+
+        <h3>Example</h3>
+        <pre>
+POST /api/pokemon/25
+{
+  "name": "Updated Pikachu"
+}
+    </pre>
+    </section>
+
 </body>
+
 </html>
