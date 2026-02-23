@@ -4,7 +4,7 @@ const { sendJSON } = require('./getHandlers');
 const parseBody = (req, callback) => {
   let body = '';
 
-  req.on('data', chunk => {
+  req.on('data', (chunk) => {
     body += chunk;
   });
 
@@ -25,7 +25,9 @@ const parseBody = (req, callback) => {
 
 const addPokemon = (req, res, data) => {
   parseBody(req, (body) => {
-    const { name, type, generation, stats } = body;
+    const {
+      name, type, generation, stats,
+    } = body;
 
     if (!name || !type || !generation || !stats) {
       return sendJSON(req, res, 400, { message: 'Missing required fields' });
@@ -52,7 +54,7 @@ const updatePokemon = (req, res, data, id) => {
     return sendJSON(req, res, 400, { message: 'Invalid ID' });
   }
 
-  const pokemon = data.find(p => p.id === pokeId);
+  const pokemon = data.find((p) => p.id === pokeId);
 
   if (!pokemon) {
     return sendJSON(req, res, 404, { message: 'Pokemon not found' });

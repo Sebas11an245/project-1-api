@@ -3,11 +3,10 @@ const getHandlers = require('./handlers/getHandlers');
 const postHandlers = require('./handlers/postHandlers');
 const { serveFile } = require('./handlers/fileHandler');
 
-
 const handleRequest = (req, res, data) => {
   const parsedUrl = url.parse(req.url);
   const path = parsedUrl.pathname;
-  const method = req.method;
+  const { method } = req;
 
   if (path === '/' || path === '/index.html') {
     return serveFile(res, 'client/index.html', 'text/html');
